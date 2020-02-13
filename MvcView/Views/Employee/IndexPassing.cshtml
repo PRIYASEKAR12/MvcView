@@ -1,0 +1,73 @@
+﻿@model EmployeeEntity.Employee
+
+@{
+    ViewBag.Title = "IndexPassing";
+}
+<h1>View Data</h1>
+<table border="1">
+    <tr>
+        <td>EmployeeName</td>
+        <td>EmployeeId</td>
+        <td>EmployeePhoneNumber</td>
+    </tr>
+    @foreach (EmployeeEntity.Employee Item in (IEnumerable<EmployeeEntity.Employee>)ViewData["employee"])
+    {
+        <tr>
+            <td>
+                @Item.EmployeeName
+            </td>
+            <td>
+                @Item.EmployeeId
+            </td>
+            <td>
+                @Item.EmployeePhoneNumber
+            </td>
+        </tr>
+    }
+</table>
+<h1>Temp Data</h1>
+<table border="1">
+    <tr>
+        <td>EmployeeName</td>
+        <td>EmployeeId</td>
+        <td>EmployeePhoneNumber</td>
+    </tr>
+    @foreach (EmployeeEntity.Employee Item in (IEnumerable<EmployeeEntity.Employee>)TempData["employee"])
+    {
+        <tr>
+            <td>
+                @Item.EmployeeName
+            </td>
+            <td>
+                @Item.EmployeeId
+            </td>
+            <td>
+                @Item.EmployeePhoneNumber
+            </td>
+        </tr>
+    }
+</table>
+<h1>View Bag</h1>
+<table border="1">
+    <tr>
+        <td>EmployeeName</td>
+        <td>EmployeeId</td>
+        <td>EmployeePhoneNumber</td>
+
+    </tr>
+
+    @foreach (EmployeeEntity.Employee Item in ViewBag.employee)
+    {
+        <tr>
+            <td>
+                @Item.EmployeeName
+            </td>
+            <td>
+                @Item.EmployeeId
+            </td>
+            <td>
+                @Item.EmployeePhoneNumber
+            </td>
+        </tr>
+    }
+</table>
