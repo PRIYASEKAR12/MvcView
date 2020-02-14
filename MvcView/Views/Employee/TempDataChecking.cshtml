@@ -1,0 +1,28 @@
+﻿@model EmployeeEntity.Employee
+
+@{
+    ViewBag.Title = "TempDataChecking";
+}
+<h2>TempDataChecking</h2>
+
+<h3>Employee Details-TempData</h3>
+
+<table border="1">
+    <tr>
+        <td>Employee Name</td>
+        <td>Employee PhoneNumber</td>
+    </tr>
+    @foreach (EmployeeEntity.Employee item in(List<EmployeeEntity.Employee>)TempData["employees"])
+    {
+        <tr>
+            <td>
+                @item.EmployeeName
+            </td>
+            <td>
+                @item.EmployeePhoneNumber
+            </td>
+        </tr>
+    }
+</table>
+
+

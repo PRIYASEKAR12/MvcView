@@ -11,15 +11,36 @@ namespace EmployeeDAL
     public class EmployeeRepository
     {
         public static List<Employee> employee = new List<Employee>();
-         static EmployeeRepository()
+        static EmployeeRepository()
         {
-            employee.Add(new Employee { EmployeeName = "Priya", EmployeeId = 2341, EmployeePhoneNumber = 9865167230 });
-            employee.Add(new Employee { EmployeeName = "Hari", EmployeeId = 7865, EmployeePhoneNumber = 9500706230 });
-            employee.Add(new Employee { EmployeeName = "Madhu", EmployeeId = 8765, EmployeePhoneNumber = 6381517883 });
+            employee.Add(new Employee("Priya", 1,6381517883));
+            employee.Add(new Employee("Hari", 2,9500706230));
+            employee.Add(new Employee("Madhu", 3,9865167230));
         }
-        public static IEnumerable<Employee> GetValue()
+        public IEnumerable<Employee> GetEmployeeDetails()
         {
             return employee;
+        }
+        public void AddEmployee(Employee employeeDetails)
+        {
+            employee.Add(employeeDetails);
+        }
+        public Employee GetEmployeeById(int EmployeeId)
+        {
+            return employee.Find(id => id.EmployeeId == EmployeeId);
+        }
+        public void DeleteEmployee(int EmployeeId)
+        {
+            Employee pack = GetEmployeeById(EmployeeId);
+            if (pack != null)
+                employee.Remove(pack);
+        }
+        public void UpdateEmployee(Employee pack)
+        {
+            //PackageDetails packages = package.Find(id => id.PackageId == pack.PackageId);
+            Employee employees = GetEmployeeById(pack.EmployeeId);
+            employees.EmployeeName = pack.EmployeeName;
+            employees.EmployeePhoneNumber = pack.EmployeePhoneNumber;
         }
     }
 }

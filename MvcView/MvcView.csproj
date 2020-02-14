@@ -125,6 +125,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Employee\IndexPassing.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\TempDataCheck.cshtml" />
+    <Content Include="Views\Employee\TempDataChecking.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
