@@ -38,21 +38,30 @@ namespace MvcView.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult Create()
+        [ActionName("Create")]
+        public ActionResult Create_Get()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Employee employeeDetails)
+        [ActionName("Create")]                                     //update Model
+        public ActionResult Create_Post()
         {
-            // if(ModelState.IsValid)
-            //{
-            employee.AddEmployee(employeeDetails);
+            Employee employeeUpdate = new Employee();
+            UpdateModel(employeeUpdate);
+            employee.AddEmployee(employeeUpdate);
             TempData["Message"] = "Employee added";
             return RedirectToAction("Index");
-            //}
-            //return View(packageDetails);
         }
+
+        //public ActionResult Create(FormCollection formcollection)         //Form collection 
+        //{
+        //    Employee employeeForm = new Employee();
+        //    employee.AddEmployee(employeeForm);
+        //    TempData["Message"] = "Employee added";
+        //    return RedirectToAction("Index");
+
+        //}
         public ActionResult Edit(int id)
         {
             Employee pack = employee.GetEmployeeById(id);
@@ -65,15 +74,13 @@ namespace MvcView.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public ActionResult Update(Employee employeeDetails)
+        public ActionResult Update()                            //try update model
         {
-            // if (ModelState.IsValid)
-            //{
-            employee.UpdateEmployee(employeeDetails);
+            Employee employeeTry = new Employee();
+            TryUpdateModel(employeeTry);
+            employee.UpdateEmployee(employeeTry);
             TempData["Message"] = "Employee updated";
             return RedirectToAction("Index");
-            //}
-            //return View("Edit",packageDetails);
         }
 
     }
