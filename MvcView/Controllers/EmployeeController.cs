@@ -10,26 +10,26 @@ namespace MvcView.Controllers
     public class EmployeeController : Controller
     {
         // GET: Package
-        EmployeeRepository employee;
+        EmployeeRepository employeeRepository;
         public EmployeeController()
         {
-            employee = new EmployeeRepository();
+            employeeRepository = new EmployeeRepository();
         }
         public ActionResult Index()
         {
-            IEnumerable<Employee> employees = employee.GetEmployeeDetails();
+            IEnumerable<Employee> employees = employeeRepository.GetEmployeeDetails();
             return View(employees);
         }
         public ActionResult IndexPassing()
         {
-            IEnumerable<Employee> employees = employee.GetEmployeeDetails();
+            IEnumerable<Employee> employees = employeeRepository.GetEmployeeDetails();
             ViewBag.employee = employees;
             ViewData["employees"] = employees;
             return View();
         }
         public ActionResult TempDataCheck()
         {
-            IEnumerable<Employee> employeeDetails = employee.GetEmployeeDetails();
+            IEnumerable<Employee> employeeDetails = employeeRepository.GetEmployeeDetails();
             TempData["employees"] = employeeDetails;
             return RedirectToAction("TempDataChecking");
         }
@@ -49,27 +49,20 @@ namespace MvcView.Controllers
         {
             Employee employeeUpdate = new Employee();
             UpdateModel(employeeUpdate);
-            employee.AddEmployee(employeeUpdate);
+            employeeRepository.AddEmployee(employeeUpdate);
             TempData["Message"] = "Employee added";
             return RedirectToAction("Index");
         }
 
-        //public ActionResult Create(FormCollection formcollection)         //Form collection 
-        //{
-        //    Employee employeeForm = new Employee();
-        //    employee.AddEmployee(employeeForm);
-        //    TempData["Message"] = "Employee added";
-        //    return RedirectToAction("Index");
-
-        //}
+        
         public ActionResult Edit(int id)
         {
-            Employee pack = employee.GetEmployeeById(id);
+            Employee pack = employeeRepository.GetEmployeeById(id);
             return View(pack);
         }
         public ActionResult Delete(int id)
         {
-            employee.DeleteEmployee(id);
+            employeeRepository.DeleteEmployee(id);
             TempData["Message"] = "Employee deleted";
             return RedirectToAction("Index");
         }
@@ -78,7 +71,7 @@ namespace MvcView.Controllers
         {
             Employee employeeTry = new Employee();
             TryUpdateModel(employeeTry);
-            employee.UpdateEmployee(employeeTry);
+            employeeRepository.UpdateEmployee(employeeTry);
             TempData["Message"] = "Employee updated";
             return RedirectToAction("Index");
         }
