@@ -27,16 +27,6 @@ namespace MvcView.Controllers
             ViewData["employees"] = employees;
             return View();
         }
-        public ActionResult TempDataCheck()
-        {
-            IEnumerable<Employee> employeeDetails = employeeRepository.GetEmployeeDetails();
-            TempData["employees"] = employeeDetails;
-            return RedirectToAction("TempDataChecking");
-        }
-        public ActionResult TempDataChecking()
-        {
-            return View();
-        }
         [HttpGet]
         [ActionName("Create")]
         public ActionResult Create_Get()
@@ -44,12 +34,10 @@ namespace MvcView.Controllers
             return View();
         }
         [HttpPost]
-        [ActionName("Create")]                                     //update Model
-        public ActionResult Create_Post()
-        {
-            Employee employeeUpdate = new Employee();
-            UpdateModel(employeeUpdate);
-            employeeRepository.AddEmployee(employeeUpdate);
+        [ActionName("Create")]                                     
+        public ActionResult Create_Post([Bind(Exclude = "EmployeePhoneNumber")] Employee employee)
+        {          
+            employeeRepository.AddEmployee(employee);
             TempData["Message"] = "Employee added";
             return RedirectToAction("Index");
         }
@@ -67,11 +55,9 @@ namespace MvcView.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public ActionResult Update()                            //try update model
+        public ActionResult Update([Bind(Include = "EmployeeId,EmployeeName,Gender")] Employee employee)                           
         {
-            Employee employeeTry = new Employee();
-            TryUpdateModel(employeeTry);
-            employeeRepository.UpdateEmployee(employeeTry);
+            employeeRepository.UpdateEmployee(employee);
             TempData["Message"] = "Employee updated";
             return RedirectToAction("Index");
         }

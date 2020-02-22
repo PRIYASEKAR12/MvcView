@@ -11,12 +11,6 @@ namespace EmployeeDAL
     public class EmployeeRepository
     {
         public static List<Employee> employeeList = new List<Employee>();
-        static EmployeeRepository()
-        {
-            employeeList.Add(new Employee("Priya", 1,6381517883));
-            employeeList.Add(new Employee("Hari", 2,9500706230));
-            employeeList.Add(new Employee("Madhu", 3,9865167230));
-        }
         public IEnumerable<Employee> GetEmployeeDetails()
         {
             return employeeList;

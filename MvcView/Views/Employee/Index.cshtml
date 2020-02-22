@@ -16,6 +16,8 @@
     <tr>
         <td>Employee Name</td>
         <td>Employee PhoneNumber</td>
+        <td>EmployeeGender</td>
+        <td>EmployeeAge</td>
         <td>Choice</td>
     </tr>
     @foreach (EmployeeEntity.Employee item in @Model)
@@ -27,6 +29,13 @@
             <td>
                 @item.EmployeePhoneNumber
             </td>
+            <td>
+                @item.Gender
+            </td>
+            <td>
+                @item.Age
+            </td>
+            
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId })
                 @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })

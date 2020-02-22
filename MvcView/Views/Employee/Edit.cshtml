@@ -28,6 +28,22 @@
         </tr>
         <tr>
             <td>
+                @Html.Label("EmployeeAge")
+            </td>
+            <td>
+                @Html.EditorFor(Model => Model.Age)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("EmployeeGender")
+            </td>
+            <td>
+                @Html.EditorFor(Model => Model.Gender)
+            </td>
+        </tr>
+        <tr>
+            <td>
                 @Html.ActionLink("Cancel", "Index")
             </td>
             <td>
